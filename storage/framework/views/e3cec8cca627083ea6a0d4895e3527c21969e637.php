@@ -40,7 +40,7 @@
                 <button
                   class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
                 >
-                  View More
+                  Lihat Detail
                 </button>
               </a>
             </div>            

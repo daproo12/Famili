@@ -11,15 +11,12 @@
       <div
         class="text-gray-500 focus-within:text-green-500" style="margin-left: auto"
       >
-        
         <button
           class="bg-green-500 text-white active:bg-green-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           @click="openModalMOU">
           Dokumen MOU
         </button>
-        
-        
-        
+        <?php echo $__env->make('partial.modal_MOU', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       </div>
     </div>
     <div class="w-full overflow-hidden rounded-lg">
@@ -59,7 +56,7 @@
                 <button
                   class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
                 >
-                  View More
+                  Lihat Detail
                 </button>
               </a>
             </div>            

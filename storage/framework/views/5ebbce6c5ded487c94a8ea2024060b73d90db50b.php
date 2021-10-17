@@ -100,7 +100,7 @@
             <tr
               class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
             >
-              <th class="px-4 py-3">Nama</th>
+              <th class="px-4 py-3">Pengajuan Kerjasama</th>
               
               <th class="px-4 py-3"></th>
             </tr>
@@ -146,7 +146,7 @@
                     <button
                       class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-green-500"
                     >
-                      View More
+                      Lihat Detail
                     </button>
                   </a>
                 </div>

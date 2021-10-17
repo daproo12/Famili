@@ -72,11 +72,11 @@
             <!-- Kerjasama -->
             <li class="relative px-6 py-3">
               <span
-                class="<?php echo e(($title === "Kerjasama" or $title === "Detail Kerjasama") ? 'absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg' : ''); ?>"
+                class="<?php echo e(($title === "Kerjasama" or $title === "Detail Kerjasama" or $title === "Tambah Data Hasil Panen") ? 'absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg' : ''); ?>"
                 aria-hidden="true"
               ></span>              
               <a
-                class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 <?php echo e(($title === "Kerjasama" or $title === "Detail Kerjasama") ? 'dark:text-gray-100 text-gray-800 font-bold' : ''); ?>"
+                class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 <?php echo e(($title === "Kerjasama" or $title === "Detail Kerjasama" or $title === "Tambah Data Hasil Panen") ? 'dark:text-gray-100 text-gray-800 font-bold' : ''); ?>"
                 style="font-size: 1rem"
                 href="/kerjasama"
               >

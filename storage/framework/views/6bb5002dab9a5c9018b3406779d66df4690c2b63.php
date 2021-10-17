@@ -87,28 +87,23 @@
             <div class="grid text-sm">
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
-                <div class="px-4 py-2 font-semibold">Lokasi Lahan</div>
-                
-              </div>
-              <div class="grid grid-cols-2"
-              style="grid-template-columns: 35% auto;">
-                <div class="px-4 py-2 font-semibold">Kecamatan</div>
+                <div class="px-4 py-2 font-semibold">Kecamatan Lokasi Lahan</div>
                 <div class="px-4 py-2">Trunojoyo</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
-                <div class="px-4 py-2 font-semibold">Desa</div>
+                <div class="px-4 py-2 font-semibold">Desa Lokasi Lahan</div>
                 <div class="px-4 py-2">Sukoharjo</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
-                <div class="px-4 py-2 font-semibold">Alamat</div>
+                <div class="px-4 py-2 font-semibold">Alamat Lokasi Lahan</div>
                 <div class="px-4 py-2">Jl. Raden Rahmad, Dusun Mengkubuwono, RT 003/ RW 005</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Luas Lahan</div>
-                <div class="px-4 py-2">150 meter persegi</div>
+                <div class="px-4 py-2">150 m2</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
@@ -116,7 +111,7 @@
                 <div class="px-4 grid">
                   <img
                     class="object-cover"
-                    src="./assets/img/lahan-2.jpg"
+                    src="./assets/img/bukti-lahan-2.jpg"
                     alt=""
                     width="200"
                     loading="lazy"

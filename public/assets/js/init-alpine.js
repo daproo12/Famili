@@ -65,15 +65,26 @@ function data() {
       this.isModalMOUOpen = false
       this.trapCleanup()
     },
-    // Modal Tambah Keterangan Kerjasama
-    isModalKeteranganKerjasamaOpen: false,
+    // Modal Prediksi
+    isModalPrediksiOpen: false,
     trapCleanup: null,
-    openModalKeteranganKerjasama() {
-      this.isModalKeteranganKerjasamaOpen = true
-      this.trapCleanup = focusTrap(document.querySelector('#modalMOU'))
+    openModalPrediksi() {
+      this.isModalPrediksiOpen = true
+      this.trapCleanup = focusTrap(document.querySelector('#modalPrediksi'))
     },
-    closeModalKeteranganKerjasama() {
-      this.isModalKeteranganKerjasamaOpen = false
+    closeModalPrediksi() {
+      this.isModalPrediksiOpen = false
+      this.trapCleanup()
+    },
+    //Modal Bukti Pembayaran
+    isModalBuktiPembayaranOpen: false,
+    trapCleanup: null,
+    openModalBuktiPembayaran() {
+      this.isModalBuktiPembayaranOpen = true
+      this.trapCleanup = focusTrap(document.querySelector('#modalBuktiPembayaran'))
+    },
+    closeModalBuktiPembayaran() {
+      this.isModalBuktiPembayaranOpen = false
       this.trapCleanup()
     },
   }

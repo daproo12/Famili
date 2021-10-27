@@ -9,7 +9,7 @@
             style="margin-left: 2.5rem"
             href="/"
           >
-            <img src="./assets/img/logo-1.png" alt="Logo" width="100">
+            <img src="/assets/img/logo-1.png" alt="Logo" width="100">
           </a>
           <ul class="mt-6"><!-- Dashoard -->
             <li class="relative px-6 py-3">
@@ -20,7 +20,7 @@
               <a
                 class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ ($title === "Dashboard" or $title === "Detail Petani") ? 'dark:text-gray-100 text-gray-800 font-bold' : '' }}"
                 style="font-size: 1rem"
-                href="/"
+                href="/administrator"
               >
                 <svg
                   class="w-5 h-5"

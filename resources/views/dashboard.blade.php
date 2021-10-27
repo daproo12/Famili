@@ -27,12 +27,12 @@
           <p
             class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
           >
-            Jumlah Akun Terverifikasi
+            Jumlah Akun perlu diverifikasi
           </p>
           <p
             class="text-lg font-semibold text-gray-700 dark:text-gray-200"
           >
-            6389
+            {{ $data }}
           </p>
         </div>
       </div>
@@ -60,7 +60,7 @@
           <p
             class="text-lg font-semibold text-gray-700 dark:text-gray-200"
           >
-            1673
+            {{$data1}}
           </p>
         </div>
       </div>
@@ -88,7 +88,7 @@
           <p
             class="text-lg font-semibold text-gray-700 dark:text-gray-200"
           >
-            350
+          {{$data2}}
           </p>
         </div>
       </div>
@@ -107,6 +107,8 @@
               <th class="px-4 py-3"></th>
             </tr>
           </thead>
+          @if($data4)
+          @foreach($data4 as $key => $row)
           <tbody
             class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
           >
@@ -119,7 +121,7 @@
                   >
                     <img
                       class="object-cover w-full h-full rounded-full"
-                      src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+                      src="{{$row -> profile_photo}}"
                       alt=""
                       loading="lazy"
                     />
@@ -129,14 +131,15 @@
                     ></div>
                   </div>
                   <div>
-                    <p class="font-semibold">Hans Burger</p>
+                    <p class="font-semibold text-white">{{$row -> nama}}</p>
                     <p class="font-medium text-xs text-gray-600 dark:text-gray-400">
-                      Dusun Sukoharjo
+                      {{$data3[$key] -> lokasi_lahan}}
                     </p>
                     <p class="font-medium text-xs text-gray-600 dark:text-gray-400">
-                      6/10/2020
+                      {{$row -> created_at}}
                     </p>                   
                   </div>
+                  
                 </div>
               </td>
               {{-- <td class="px-4 py-3 text-xs">
@@ -150,17 +153,23 @@
                 <div
                   class="relative text-gray-500 focus-within:text-purple-600" style="float:right"
                 >
-                  <a href="/detail_dashboard">
+                <form action="/detail_dashboard" method="post">
+                @csrf
+                  <input type="hidden" name="id_lahan" value="{{$data3[$key]->id_lahan}}">
+                  <a>
                     <button
                       class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-green-500"
                     >
                       Lihat Detail
                     </button>
                   </a>
+                </form>
                 </div>
               </td>
-            </tr>                    
+            </tr>                  
           </tbody>
+          @endforeach
+          @endif
         </table>
       </div>
       @include("partial.pagination")

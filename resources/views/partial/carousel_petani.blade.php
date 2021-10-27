@@ -14,7 +14,17 @@
                 <span>Budidaya Komoditas Vanili</span>
 
                 <p>Vanili termasuk ke dalam tujuh komoditas perkebunan yang saat ini memiliki potensi untuk peningkatan ekspor.</p>
-                <a class="mt-8 buynow" href="/tambah_pengajuan_petani">Kerjasama</a>
+                @if($auth == 'guest') 
+                  <a class="mt-8 buynow" href="/tambah_pengajuan_petani">Kerjasama</a>
+                  @else
+                  @if($auth -> id_account_verify == "0")
+                  <a class="mt-8 buynow" href="/" onclick="return confirm('Akun belum diverifikasi! Harap menunggu verifikasi dari admin. Untuk melakukan pengecekan status akun, klik foto profil anda.')">Kerjasama</a>
+                  @elseif($auth -> id_account_verify == "2")
+                  <a class="mt-8 buynow" href="/tambah_pengajuan_petani">Kerjasama</a>
+                  @elseif($auth -> id_account_verify == "1")
+                  <a class="mt-8 buynow" href="/" onclick="return confirm('Akun anda ditolak. Harap daftar kembali dengan data asli anda.')">Kerjasama</a>
+                  @endif
+                @endif
               </div>
             </div>
           </div>
@@ -26,7 +36,17 @@
                 <span>Budidaya Komoditas Vanili</span>
 
                 <p>Harga vanili yang sangat potensial di pasar internasional.</p>
-                <a class="mt-8 buynow" href="/detail_pengajuan_petani_after">Kerjasama</a>
+                @if($auth == 'guest') 
+                  <a class="mt-8 buynow" href="/tambah_pengajuan_petani">Kerjasama</a>
+                  @else
+                  @if($auth -> id_account_verify == "0")
+                  <a class="mt-8 buynow" href="/" onclick="return confirm('Akun belum diverifikasi! Harap menunggu verifikasi dari admin. Untuk melakukan pengecekan status akun, klik foto profil anda.')">Kerjasama</a>
+                  @elseif($auth -> id_account_verify == "2")
+                  <a class="mt-8 buynow" href="/tambah_pengajuan_petani">Kerjasama</a>
+                  @elseif($auth -> id_account_verify == "1")
+                  <a class="mt-8 buynow" href="/" onclick="return confirm('Akun anda ditolak. Harap daftar kembali dengan data asli anda.')">Kerjasama</a>
+                  @endif
+                @endif
               </div>
             </div>
           </div>
@@ -38,7 +58,17 @@
                 <span>Budidaya Komoditas Vanili</span>
 
                 <p>Vanili merupakan tanaman tropis sehingga cocok ditanam di Indonesia.</p>
-                <a class="mt-8 buynow" href="/detail_pengajuan_petani_before">Kerjasama</a>
+                @if($auth == 'guest') 
+                  <a class="mt-8 buynow" href="/tambah_pengajuan_petani">Kerjasama</a>
+                  @else
+                  @if($auth -> id_account_verify == "0")
+                  <a class="mt-8 buynow" href="/" onclick="return confirm('Akun belum diverifikasi! Harap menunggu verifikasi dari admin. Untuk melakukan pengecekan status akun, klik foto profil anda.')">Kerjasama</a>
+                  @elseif($auth -> id_account_verify == "2")
+                  <a class="mt-8 buynow" href="/tambah_pengajuan_petani">Kerjasama</a>
+                  @elseif($auth -> id_account_verify == "1")
+                  <a class="mt-8 buynow" href="/" onclick="return confirm('Akun anda ditolak. Harap daftar kembali dengan data asli anda.')">Kerjasama</a>
+                  @endif
+                @endif
               </div>
             </div>
           </div>

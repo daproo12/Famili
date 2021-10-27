@@ -49,15 +49,15 @@
             </svg>
           </button>
         </header>
+        <form action="/upload_mou" method="post" enctype='multipart/form-data'>
+            @csrf
         <!-- Modal body -->
         <div class="mt-4 mb-6">
           <!-- Modal title -->
-          <form>
             <div class="form-group">
               <label for="exampleFormControlFile1">pilih file dokumen</label>
-              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              <input type="file" class="form-control-file" id="mou" name="mou">
             </div>
-          </form>
         </div>
         <footer
           class="flex items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800"
@@ -68,15 +68,26 @@
           >
             Kembali
           </button>
-          <a href="/kerjasama">
+          <a>
+            @if ($data)
             <button
               class="px-5 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
-              type="button"
+              type="submit"
+              {{-- onclick="return confirm('Upload File Template MOU?');" --}}
+            >
+              Update
+            </button>
+            @else
+            <button
+              class="px-5 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
+              type="submit"
               {{-- onclick="return confirm('Upload File Template MOU?');" --}}
             >
               Upload
             </button>
+            @endif
           </a>
         </footer>
       </div>
+      </form>
     </div>

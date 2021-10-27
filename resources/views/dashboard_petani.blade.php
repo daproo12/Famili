@@ -15,7 +15,7 @@
               c.   Penanaman<br>
               d.  	Perawatan<br>
               e.  	Pemanenan</p>
-            <a href="./assets/tentang.pdf" download>Download MOU</a>
+            <a href="{{$mou->file_mou}}" download>Download MOU</a>
           </div>
         </div>
         <div class="col-xl-7 col-lg-7 col-md-7 co-sm-l2">

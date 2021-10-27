@@ -32,22 +32,23 @@
           <div class="image overflow-hidden">
             <img
               class="object-cover w-full h-full rounded"
-              src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+              src="{{$orang -> profile_photo}}"
               alt=""
               loading="lazy"
             />
           </div>
-          <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Hans Burger</h1>
+          <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$orang -> nama}}</h1>
           {{-- <h3 class="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3> --}}
           <ul
             class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
             <li class="flex items-center py-3">
               <span>Status</span>
               <span class="ml-auto">
-                <span
+                @include('partial.verifikasi_lahan')
+                {{-- <span
                   class="font-medium bg-gray-50 shadow py-1 px-2 rounded text-black text-sm">
                   Belum Diverifikasi
-                </span>
+                </span> --}}
                 {{-- <span
                   class="font-medium bg-green-500 shadow py-1 px-2 rounded text-white text-sm">
                   Di Setuui
@@ -60,12 +61,14 @@
             </li>
             <li class="flex items-center py-3">
               <div>
+                <a href="{{$data -> dokumen_mou}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-fill" viewBox="0 0 16 16">
                   <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"/>
                 </svg>
+                </a>
                 {{-- <span>Member since</span> --}}
               </div>
-              <span class="ml-auto">06/10/2020</span>
+              <span class="ml-auto">{{$data -> created_at}}</span>
             </li>
           </ul>
         </div>
@@ -94,22 +97,22 @@
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Kecamatan Lokasi Lahan</div>
-                <div class="px-4 py-2">Trunojoyo</div>
+                <div class="px-4 py-2">{{$kec -> kecamatan}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Desa Lokasi Lahan</div>
-                <div class="px-4 py-2">Sukoharjo</div>
+                <div class="px-4 py-2">{{$desa -> desa}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Alamat Lokasi Lahan</div>
-                <div class="px-4 py-2">Jl. Raden Rahmad, Dusun Mengkubuwono, RT 003/ RW 005</div>
+                <div class="px-4 py-2">{{$data -> lokasi_lahan}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Luas Lahan</div>
-                <div class="px-4 py-2">150 m2</div>
+                <div class="px-4 py-2">{{$data -> luas_lahan}} m2</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
@@ -117,7 +120,7 @@
                 <div class="px-4 grid">
                   <img
                     class="object-cover"
-                    src="./assets/img/bukti-lahan-2.jpg"
+                    src="{{$data -> foto_bukti_lahan}}"
                     alt=""
                     width="200"
                     loading="lazy"

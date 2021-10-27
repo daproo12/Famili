@@ -1,3 +1,4 @@
+                  @if ($data->id_account_verify == 0)
                   <div class="relative">
                     <button
                       class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
@@ -19,17 +20,19 @@
                         aria-label="submenu"
                       >
                         <li class="flex">
-                          <a
+                          <a href="/terima/{{$data->id}}"
+                            id = "2"
+                            name="2"
                             class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                            href="#"
                           >
-                            <span>Di Setujui</span>
+                            <span>Di Terima</span>
                           </a>
                         </li>
                         <li class="flex">
-                          <a
+                          <a href="/tolak/{{$data->id}}"
+                            id = "1"
+                            name="1"
                             class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                            href="#"
                           >
                             <span>Di Tolak</span>
                           </a>
@@ -37,3 +40,28 @@
                       </ul>
                     </template>
                   </div>
+                  @elseif ($data->id_account_verify == 1)
+                  <div class="relative">
+                    <button
+                      class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
+                      @click="toggleVerifikasiMenu"
+                      @keydown.escape="closeVerifikasi"
+                      aria-label="Verifikasi"
+                      aria-haspopup="true"
+                    >
+                    Ditolak
+                    </button>
+                  </div>
+                  @elseif ($data->id_account_verify == 2)
+                  <div class="relative">
+                    <button
+                      class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
+                      @click="toggleVerifikasiMenu"
+                      @keydown.escape="closeVerifikasi"
+                      aria-label="Verifikasi"
+                      aria-haspopup="true"
+                    >
+                    Diterima
+                    </button>
+                  </div>
+                  @endif

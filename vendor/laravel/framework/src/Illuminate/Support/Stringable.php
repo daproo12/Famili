@@ -3,7 +3,6 @@
 namespace Illuminate\Support;
 
 use Closure;
-use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
 use JsonSerializable;
@@ -11,7 +10,7 @@ use Symfony\Component\VarDumper\VarDumper;
 
 class Stringable implements JsonSerializable
 {
-    use Conditionable, Macroable, Tappable;
+    use Macroable, Tappable;
 
     /**
      * The underlying string value.
@@ -259,16 +258,6 @@ class Stringable implements JsonSerializable
     }
 
     /**
-     * Determine if a given string is a valid UUID.
-     *
-     * @return bool
-     */
-    public function isUuid()
-    {
-        return Str::isUuid($this->value);
-    }
-
-    /**
      * Determine if the given string is empty.
      *
      * @return bool
@@ -350,7 +339,13 @@ class Stringable implements JsonSerializable
      */
     public function match($pattern)
     {
-        return new static(Str::match($pattern, $this->value));
+        preg_match($pattern, $this->value, $matches);
+
+        if (! $matches) {
+            return new static;
+        }
+
+        return new static($matches[1] ?? $matches[0]);
     }
 
     /**
@@ -361,7 +356,13 @@ class Stringable implements JsonSerializable
      */
     public function matchAll($pattern)
     {
-        return Str::matchAll($pattern, $this->value);
+        preg_match_all($pattern, $this->value, $matches);
+
+        if (empty($matches[0])) {
+            return collect();
+        }
+
+        return collect($matches[1] ?? $matches[0]);
     }
 
     /**
@@ -498,7 +499,7 @@ class Stringable implements JsonSerializable
      */
     public function replace($search, $replace)
     {
-        return new static(Str::replace($search, $replace, $this->value));
+        return new static(str_replace($search, $replace, $this->value));
     }
 
     /**
@@ -708,6 +709,25 @@ class Stringable implements JsonSerializable
     }
 
     /**
+     * Apply the callback's string changes if the given "value" is true.
+     *
+     * @param  mixed  $value
+     * @param  callable  $callback
+     * @param  callable|null  $default
+     * @return mixed|$this
+     */
+    public function when($value, $callback, $default = null)
+    {
+        if ($value) {
+            return $callback($this, $value) ?: $this;
+        } elseif ($default) {
+            return $default($this, $value) ?: $this;
+        }
+
+        return $this;
+    }
+
+    /**
      * Execute the given callback if the string is empty.
      *
      * @param  callable  $callback
@@ -792,7 +812,6 @@ class Stringable implements JsonSerializable
      *
      * @return string
      */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->__toString();

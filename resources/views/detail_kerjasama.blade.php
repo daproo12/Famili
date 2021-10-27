@@ -32,12 +32,12 @@
           <div class="image overflow-hidden">
             <img
               class="object-cover w-full h-full rounded"
-              src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+              src="/{{$orang -> profile_photo}}"
               alt=""
               loading="lazy"
             />
           </div>
-          <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Hans Burger</h1>
+          <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$orang -> nama}}</h1>
           {{-- <h3 class="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3> --}}
           <ul
             class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
@@ -45,8 +45,8 @@
               <span>Status</span>
               <span class="ml-auto">
                 <span
-                  class="font-medium bg-gray-50 shadow py-1 px-2 rounded text-black text-sm">
-                  Belum Diverifikasi
+                  class="font-medium bg-green-500 shadow py-1 px-2 rounded text-white text-sm">
+                  Disetujui
                 </span>
                 {{-- <span
                   class="font-medium bg-green-500 shadow py-1 px-2 rounded text-white text-sm">
@@ -65,7 +65,7 @@
                 </svg>
                 {{-- <span>Member since</span> --}}
               </div>
-              <span class="ml-auto">06/10/2020</span>
+              <span class="ml-auto">{{$data -> updated_at}}</span>
             </li>
           </ul>
         </div>
@@ -92,27 +92,27 @@
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Kecamatan Lokasi Lahan</div>
-                <div class="px-4 py-2">Trunojoyo</div>
+                <div class="px-4 py-2">{{$kec -> kecamatan}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Desa Lokasi Lahan</div>
-                <div class="px-4 py-2">Sukoharjo</div>
+                <div class="px-4 py-2">{{$desa -> desa}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Alamat Lokasi Lahan</div>
-                <div class="px-4 py-2">Jl. Raden Rahmad, Dusun Mengkubuwono, RT 003/ RW 005</div>
+                <div class="px-4 py-2">{{$data -> lokasi_lahan}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Tanggal Penanaman</div>
-                <div class="px-4 py-2">12/10/2020</div>
+                <div class="px-4 py-2">{{$data -> tanggal_tanam}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Luas Lahan</div>
-                <div class="px-4 py-2">150 meter persegi</div>
+                <div class="px-4 py-2">{{$data -> luas_lahan}} meter persegi</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
@@ -120,7 +120,7 @@
                 <div class="px-4 grid">
                   <img
                     class="object-cover"
-                    src="./assets/img/bukti-lahan-2.jpg"
+                    src="{{$data -> foto_bukti_lahan}}"
                     alt=""
                     width="200"
                     loading="lazy"
@@ -230,7 +230,7 @@
               </span>
               <span class="px-3 tracking-wide">Hasil Panen</span>
             </div>
-            <a href="/detail_kerjasama_hasilpanen">
+            <a href="/detail_kerjasama_hasilpanen/{{$data -> id_lahan}}">
               <button
                 class="items-end px-1 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-white hover:text-green-500 focus:outline-none focus:shadow-outline-white"
                ><i class="icon-copy fa fa-plus" style="padding-left: 0.3rem; padding-right:0.5rem" aria-hidden="true"></i>
@@ -252,13 +252,14 @@
                       <th class="px-2 py-2 text-medium text-sm">Tanggal Penjualan</th>
                       <th class="px-2 py-2 text-medium text-sm">Hasil Penjualan(rp)</th>
                       <th class="px-2 py-2 text-medium text-sm">Bukti Penjualan</th>
-                      <th class="px-2 py-2 text-medium text-sm">Bagi Hasil(rp)</th>
+                      <th class="px-2 py-2 text-medium text-sm">Bagi Hasil Mitra(rp)</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
                     <tr class="text-gray-700 dark:text-gray-400">
+                      @if($panen == 'null')
                       <td class="px-2 py-2 text-sm">
                         -
                       </td>
@@ -280,6 +281,33 @@
                       <td class="px-2 py-2 text-sm">
                         -
                       </td>
+                      @else
+                      @foreach($panen as $panen)
+                      <td class="px-2 py-2 text-sm">
+                        {{$panen -> panen_ke}}
+                      </td>
+                      <td class="px-2 py-2 text-sm">
+                      {{$panen -> tanggal_panen}}
+                      </td>
+                      <td class="px-2 py-2 text-sm">
+                      {{$panen -> hasil_panen}}
+                      </td>
+                      <td class="px-2 py-2 text-sm">
+                      {{$panen -> tanggal_penjualan}}
+                      </td>
+                      <td class="px-2 py-2 text-sm">
+                      {{$panen -> hasil_penjualan}}
+                      </td>
+                      <td class="px-2 py-2 text-sm">
+                      <a href="/{{$panen -> foto_bukti_penjualan}}" target="_blank" class="px-1 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-lg active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
+                        Download
+                      </a>
+                      </td>
+                      <td class="px-2 py-2 text-sm">
+                      {{$panen -> bagi_hasil_mitra}}
+                      </td>
+                      @endforeach
+                      @endif
                     </tr>
                   </tbody>
                 </table>

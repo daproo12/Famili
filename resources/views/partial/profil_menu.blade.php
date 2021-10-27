@@ -8,7 +8,7 @@
                 >
                   <img
                     class="object-cover w-12 h-12 rounded-full shadow-lg"
-                    src="https://images.unsplash.com/photo-1551006917-3b4c078c47c9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+                    src="/{{Auth::user()->profile_photo}}"
                     alt=""
                     loading="lazy"
                   />
@@ -26,7 +26,7 @@
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="/lihat_profil_mitra"
+                        href="/profile_mitra"
                       >
                         <svg
                           class="w-4 h-4 mr-3"
@@ -48,7 +48,7 @@
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="/login"
+                        href="/logout"
                       >
                         <svg
                           class="w-4 h-4 mr-3"

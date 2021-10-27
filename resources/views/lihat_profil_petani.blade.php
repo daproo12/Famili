@@ -32,30 +32,34 @@
           <div class="image overflow-hidden">
             <img
               class="object-cover w-full h-full rounded"
-              src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+              src="{{ $user -> profile_photo}}"
               alt=""
               loading="lazy"
             />
           </div>
-          <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Hans Burger</h1>
+          <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$user -> nama}}</h1>
           {{-- <h3 class="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3> --}}
           <ul
             class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
             <li class="grid grid-cols-2 items-center py-3">
               <span>Status</span>
               <span class="ml-auto">
+                @if($status -> account_verify_status == "Disetujui")
+                <span
+                  class="bg-green-500 shadow py-1 px-2 rounded text-white text-sm">
+                  {{$status -> account_verify_status }}
+                </span>
+                @elseif($status -> account_verify_status == "Belum diverifikasi")
                 <span
                   class="bg-gray-50 shadow py-1 px-2 rounded text-black text-sm">
-                  Belum Diverifikasi
+                  {{$status -> account_verify_status }}
                 </span>
-                {{-- <span
-                  class="bg-green-500 shadow py-1 px-2 rounded text-white text-sm">
-                  Setujui
-                </span> --}}
-                {{-- <span
+                @else
+                <span
                   class="bg-red-600 shadow py-1 px-2 rounded text-white text-sm">
-                  Tolak
-                </span> --}}
+                  {{$status -> account_verify_status }}
+                </span>
+                @endif
               </span>
             </li>
             {{-- <li class="flex items-center py-3">
@@ -90,50 +94,47 @@
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">NIK</div>
-                <div class="px-4 py-2">3052726375000003</div>
+                <div class="px-4 py-2">{{$user -> nik}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Nama</div>
-                <div class="px-4 py-2">Hans Burger</div>
+                <div class="px-4 py-2">{{$user -> nama}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Alamat</div>
                 <div class="grid">
+                @foreach(explode(',',$user ->alamat) as $row)
                   <div class="grid grid-cols-2"
-                  style="grid-template-columns: 35% auto;">
-                    <div class="px-4 py-2">Dusun</div>
-                    <div class="px-4 py-2">Hadipuro</div>
+                  style="grid-template-columns: 75% auto;">
+                    <div class="px-4 py-2">{{$row}}</div>
                   </div>
-                  <div class="grid grid-cols-2"
-                  style="grid-template-columns: 35% auto;">
-                    <div class="px-4 py-2">Desa</div>
-                    <div class="px-4 py-2">Sukoharjo</div>
-                  </div>
-                  <div class="grid grid-cols-2"
-                  style="grid-template-columns: 35% auto;">
-                    <div class="px-4 py-2">Kecamatan</div>
-                    <div class="px-4 py-2">Trunojoyo</div>
-                  </div>
+                @endforeach
                 </div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Email</div>
-                <div class="px-4 py-2">burger@king.com</div>
+                <div class="px-4 py-2">{{$user -> email}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">No. Telepon</div>
-                <div class="px-4 py-2">+11 998001001</div>
+                <div class="px-4 py-2">{{$user -> phone_number}}</div>
               </div>
             </div>
           </div>
-          <a href="/edit_profil_petani">
+          <a href="/editprofile">
             <button
               class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
               Edit Profil
+            </button>
+          </a>
+          <a href="/logout">
+            <button
+              class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+              Logout
             </button>
           </a>
         </div>

@@ -2,6 +2,11 @@
 
 @section('dashboard')    
   <div class="container px-6 mx-auto grid">
+    @if(session()->has('message'))
+      <div class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+          {{ session()->get('message') }}
+      </div>
+      @endif
     <div class="flex items-center"
     {{-- style="grid-template-columns: repeat(3,minmax(0,1fr));" --}}
     >
@@ -23,6 +28,8 @@
     </div>
     <div class="w-full overflow-hidden rounded-lg">
       <div class="w-full overflow-x-auto">
+      @if($data2)
+      @foreach($data2 as $key => $row)
         <div class="grid mb-8 xl:grid-cols-3" style="gap: 0.5rem;">
           <!-- Card -->
           <div
@@ -33,7 +40,7 @@
             >
               <img
                 class="object-cover w-full h-full rounded-full"
-                src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+                src="{{$row -> profile_photo}}"
                 alt=""
                 loading="lazy"
               />
@@ -43,26 +50,28 @@
               ></div>
             </div>
             <div>
-              <p class="font-semibold">Hans Burger</p>
+              <p class="font-semibold text-white">{{$row -> nama}}</p>
               <p class="font-medium text-xs text-gray-600 dark:text-gray-400">
-                Dusun Sukoharjo
+                {{$data1[$key] -> lokasi_lahan}}
               </p>
               <p class="font-medium text-xs text-gray-600 dark:text-gray-400">
-                6/10/2020
+                {{$data1[$key] -> updated_at}}
               </p>                   
             </div>
             <div
               class="text-gray-500 focus-within:text-green-500" style="margin-left: auto"
             >
-              <a href="/detail_kerjasama">
-                <button
-                  class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
-                >
-                  Lihat Detail
-                </button>
-              </a>
+                  <a href="/detail_kerjasama/{{$data1[$key]->id_lahan}}">
+                    <button
+                      class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-green-500"
+                    >
+                      Lihat Detail
+                    </button>
+                  </a>
             </div>            
           </div>
+          @endforeach
+          @endif
         </div>      
       </div>
       @include("partial.pagination")

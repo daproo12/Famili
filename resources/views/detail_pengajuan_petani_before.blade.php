@@ -20,7 +20,7 @@
               <span class="ml-auto">
                 <span
                   class="font-medium bg-gray-50 shadow py-1 px-2 rounded text-black text-sm">
-                  Belum Diverifikasi
+                  {{$verif -> verify_status}}
                 </span>
                 {{-- <span
                   class="font-medium bg-green-500 shadow py-1 px-2 rounded text-white text-sm">
@@ -39,7 +39,7 @@
                 </svg>
                 
               </div>
-              <span class="ml-auto">06/10/2020</span>
+              <span class="ml-auto">{{$data->updated_at}}</span>
             </li>
             {{-- <li class="flex items-center justify-between py-3">
               <div>
@@ -82,27 +82,42 @@
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Luas Lahan</div>
-                <div class="px-4 py-2">150 meter persegi</div>
+                <div class="px-4 py-2">{{$data->luas_lahan}} meter persegi</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Lokasi Lahan</div>
-                <div class="px-4 py-2">Jl. Raden Rahmad, Dusun Mengkubuwono, RT 003/ RW 005</div>
-              </div>
-              <div class="grid grid-cols-2"
-              style="grid-template-columns: 35% auto;">
-                <div class="px-4 py-2 font-semibold">Kecamatan</div>
-                <div class="px-4 py-2">Trunojoyo</div>
+                <div class="grid">
+                  <div class="grid grid-cols-2"
+                    style="grid-template-columns: 75% auto;">
+                      <div class="px-4 py-2">{{$data->lokasi_lahan}}</div>
+                  </div>
+                </div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Desa</div>
-                <div class="px-4 py-2">Sukoharjo</div>
+                <div class="grid">
+                  <div class="grid grid-cols-2"
+                    style="grid-template-columns: 75% auto;">
+                      <div class="px-4 py-2">{{$desa->desa}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2"
+              style="grid-template-columns: 35% auto;">
+                <div class="px-4 py-2 font-semibold">Kecamatan</div>
+                <div class="grid">
+                  <div class="grid grid-cols-2"
+                    style="grid-template-columns: 75% auto;">
+                      <div class="px-4 py-2">{{$kec->kecamatan}}</div>
+                  </div>
+                </div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Tanggal Penanaman</div>
-                <div class="px-4 py-2">12/10/2020</div>
+                <div class="px-4 py-2">{{$data->tanggal_tanam}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
@@ -110,7 +125,7 @@
                 <div class="px-4 grid">
                   <img
                     class="object-cover"
-                    src="./assets/img/bukti-lahan-2.jpg"
+                    src="{{$data->foto_bukti_lahan}}"
                     alt=""
                     width="200"
                     loading="lazy"

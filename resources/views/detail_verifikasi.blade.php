@@ -32,31 +32,18 @@
           <div class="image overflow-hidden">
             <img
               class="object-cover w-full h-full rounded"
-              src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+              src="{{$data->profile_photo}}"
               alt=""
               loading="lazy"
             />
           </div>
-          <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Hans Burger</h1>
-          {{-- <h3 class="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3> --}}
+          <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$data->nama}}</h1>
           <ul
             class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
             <li class="grid grid-cols-2 items-center py-3">
               <span>Status</span>
               <span class="ml-auto">
                 @include('partial.verifikasi_menu')
-                {{-- <span
-                  class="bg-gray-50 shadow py-1 px-2 rounded text-black text-sm">
-                  Belum Diverifikasi
-                </span> --}}
-                {{-- <span
-                  class="bg-green-500 shadow py-1 px-2 rounded text-white text-sm">
-                  Setujui
-                </span> --}}
-                {{-- <span
-                  class="bg-red-600 shadow py-1 px-2 rounded text-white text-sm">
-                  Tolak
-                </span> --}}
               </span>
             </li>
             {{-- <li class="flex items-center py-3">
@@ -91,48 +78,34 @@
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">NIK</div>
-                <div class="px-4 py-2">3052726375000003</div>
+                <div class="px-4 py-2">{{$data->nik}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Nama</div>
-                <div class="px-4 py-2">Hans Burger</div>
-              </div>
-              <div class="grid grid-cols-2"
-              style="grid-template-columns: 35% auto;">
-                <div class="px-4 py-2 font-semibold">Tanggal Lahir</div>
-                <div class="px-4 py-2">6/10/2020</div>
+                <div class="px-4 py-2">{{$data->nama}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Alamat</div>
                 <div class="grid">
+                  @foreach(explode(',',$data -> alamat) as $row)
                   <div class="grid grid-cols-2"
                   style="grid-template-columns: 35% auto;">
-                    <div class="px-4 py-2">Dusun</div>
-                    <div class="px-4 py-2">Hadipuro</div>
+                    <div class="px-4 py-2">{{$row}}</div>
                   </div>
-                  <div class="grid grid-cols-2"
-                  style="grid-template-columns: 35% auto;">
-                    <div class="px-4 py-2">Desa</div>
-                    <div class="px-4 py-2">Sukoharjo</div>
-                  </div>
-                  <div class="grid grid-cols-2"
-                  style="grid-template-columns: 35% auto;">
-                    <div class="px-4 py-2">Kecamatan</div>
-                    <div class="px-4 py-2">Trunojoyo</div>
-                  </div>
+                  @endforeach
                 </div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Email</div>
-                <div class="px-4 py-2">burger@king.com</div>
+                <div class="px-4 py-2">{{$data->email}}</div>
               </div>
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">No. Telepon</div>
-                <div class="px-4 py-2">+11 998001001</div>
+                <div class="px-4 py-2">{{$data->phone_number}}</div>
               </div>
             </div>
           </div>

@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TokoController;
+use App\Http\Controllers\EkspedisiController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LahanController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TransController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,111 +20,40 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/login', [LoginController::class,'index'])->name('login');
+Route::post('/proses_login', [LoginController::class, 'proses_login'])->name('proses_login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/daftar', [UserController::class,'store']);
+Route::get('/register', [UserController::class,'create'])->name('register');
+Route::get('/',[PagesController::class, 'home']);
+Route::get('/dashboard',[PagesController::class, 'home']);
+Route::get('/about',[UserController::class, 'about']);
 
-Route::get('/dashboard_petani', function () {
-    return view('dashboard_petani', [
-        "title" => "Dashboard Petani"
-    ]);
+Route::group(['middleware'=>['auth:user']], function(){
+        Route::get('/profile', [UserController::class,'open']);
+        Route::post('/editprofile', [UserController::class,'upload']);
+        Route::get('/editprofile', [UserController::class,'edit']);
+        Route::get('/tambah_pengajuan_petani', [LahanController::class, 'ambil_kerjasama']);
+        Route::post('/ajukan', [LahanController::class, 'ajukan_kerjasama']);
+        Route::get('/detail_pengajuan_petani', [LahanController::class, 'coba']);
+        Route::get('/getDesa/{id}', [LahanController::class, 'getDesa']);
 });
 
-Route::get('/lihat_profil_petani', function () {
-    return view('lihat_profil_petani', [
-        "title" => "Profil Saya"
-    ]);
-});
-
-Route::get('/edit_profil_petani', function () {
-    return view('edit_profil_petani', [
-        "title" => "Edit Profil Saya"
-    ]);
-});
-
-Route::get('/lihat_profil_mitra', function () {
-    return view('lihat_profil_mitra', [
-        "title" => "Profil Saya"
-    ]);
-});
-
-Route::get('/edit_profil_mitra', function () {
-    return view('edit_profil_mitra', [
-        "title" => "Edit Profil Saya"
-    ]);
-});
-
-Route::get('/detail_pengajuan_petani_before', function () {
-    return view('detail_pengajuan_petani_before', [
-        "title" => "Kerjasama Petani"
-    ]);
-});
-
-Route::get('/detail_pengajuan_petani_after', function () {
-    return view('detail_pengajuan_petani_after', [
-        "title" => "Kerjasama Petani"
-    ]);
-});
-
-Route::get('/tentang_kami', function () {
-    return view('tentang_kami', [
-        "title" => "Tentang Kami"
-    ]);
-});
-
-Route::get('/tambah_pengajuan_petani', function () {
-    return view('tambah_pengajuan_petani', [
-        "title" => "Ajukan Kerjasama"
-    ]);
-});
-
-Route::get('/', function () {
-    return view('dashboard', [
-        "title" => "Dashboard"
-    ]);
-});
-
-Route::get('/verifikasi', function () {
-    return view('verifikasi', [
-        "title" => "Verifikasi"
-    ]);
-});
-
-Route::get('/kerjasama', function () {
-    return view('kerjasama', [
-        "title" => "Kerjasama"
-    ]);
-});
-
-Route::get('/login', function () {
-    return view('login', [
-        "title" => "Login"
-    ]);
-});
-
-Route::get('/daftar', function () {
-    return view('daftar', [
-        "title" => "Buat Akun"
-    ]);
-});
-
-Route::get('/detail_dashboard', function () {
-    return view('detail_dashboard', [
-        "title" => "Detail Petani"
-    ]);
-});
-
-Route::get('/detail_verifikasi', function () {
-    return view('detail_verifikasi', [
-        "title" => "Detail Verifikasi"
-    ]);
-});
-
-Route::get('/detail_kerjasama', function () {
-    return view('detail_kerjasama', [
-        "title" => "Detail Kerjasama"
-    ]);
-});
-
-Route::get('/detail_kerjasama_hasilpanen', function () {
-    return view('detail_kerjasama_hasilpanen', [
-        "title" => "Tambah Data Hasil Panen"
-    ]);
+Route::group(['middleware'=>['auth:admin']], function(){
+        Route::get('/administrator', [AdminController::class, 'welcome']);
+        Route::get('/verifikasi', [AdminController::class, 'tampil_verifikasi']);
+        Route::get('/detail_kerjasama_hasilpanen/{id}', [AdminController::class, 'detail_kerjasama_hasilpanen']);
+        Route::get('/profile_mitra', [AdminController::class, 'open_profile']);
+        Route::post('/upload_mou', [LahanController::class, 'upload_mou']);
+        Route::get('/editprofile_mitra', [AdminController::class, 'edit_profile']);
+        Route::post('/detail_dashboard', [AdminController::class, 'ambil_data_lahan']);
+        Route::get('/kerjasama',[AdminController::class, 'kerjasama']);
+        Route::get('/profileadmin', [AdminController::class, 'edit_profile']);
+        Route::get('/detail_kerjasama/{id}',[AdminController::class, 'detail_kerjasama']);
+        Route::get('/{detail_verifikasi}', [AdminController::class, 'detail_verifikasi']);
+        Route::post('/tambah_hasilpanen', [AdminController::class, 'tambah_hasilpanen']);
+        Route::get('/tolak/{tolak}', [AdminController::class, 'tolak']);
+        Route::get('/terima/{terima}', [AdminController::class, 'terima']);
+        Route::get('/tolak_lahan/{tolak}', [AdminController::class, 'tolak_lahan']);
+        Route::get('/setuju_lahan/{setuju}', [AdminController::class, 'setuju_lahan']);
 });

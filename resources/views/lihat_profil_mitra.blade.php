@@ -33,12 +33,12 @@
             <img
               class="object-cover rounded"
               style="width:20rem;height:20rem;"
-              src="https://images.unsplash.com/photo-1551006917-3b4c078c47c9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+              src="{{$data->profile_photo}}"
               alt=""
               loading="lazy"
             />
           </div>
-          <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Katty Pari</h1>
+          <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$data->nama}}</h1>
           {{-- <h3 class="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3> --}}
           <ul
             class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
@@ -51,10 +51,10 @@
                 </span>
               </span>
             </li>
-            {{-- <li class="flex items-center py-3">
+            <li class="flex items-center py-3">
               <span>Member since</span>
-              <span class="ml-auto">Nov 07, 2016</span>
-            </li> --}}
+              <span class="ml-auto">{{$data->created_at}}</span>
+            </li>
           </ul>
         </div>
         <!-- End of profile card -->
@@ -83,7 +83,7 @@
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Nama</div>
-                <div class="px-4 py-2">Katty Pari</div>
+                <div class="px-4 py-2">{{$data->nama}}</div>
               </div>
               {{-- <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
@@ -109,16 +109,16 @@
               <div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">Email</div>
-                <div class="px-4 py-2">burger@king.com</div>
+                <div class="px-4 py-2">{{$data->email}}</div>
               </div>
-              <div class="grid grid-cols-2"
+              {{--<div class="grid grid-cols-2"
               style="grid-template-columns: 35% auto;">
                 <div class="px-4 py-2 font-semibold">No. Telepon</div>
-                <div class="px-4 py-2">+11 998001001</div>
-              </div>
+                <div class="px-4 py-2"></div>
+              </div>--}}
             </div>
           </div>
-          <a href="/edit_profil_mitra">
+          <a href="/editprofile_mitra">
             <button
               class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
               Edit Profil

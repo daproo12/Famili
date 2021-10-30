@@ -130,7 +130,7 @@
             </div>
           </div>
         </div>
-        <div class="bg-white p-3 shadow-sm rounded-sm">
+        {{-- <div class="bg-white p-3 shadow-sm rounded-sm">
           <div
             class="flex items-center justify-between p-2 px-4 py-1 mb-5 text-sm font-semibold text-white bg-green-500 rounded-md shadow-md">
             <div class="flex items-center">
@@ -142,13 +142,13 @@
               </span>
               <span class="px-3 tracking-wide">Pembayaran</span>
             </div>
-            {{-- <a href="/detail_kerjasama_hasilpanen">
+            <a href="/detail_kerjasama_hasilpanen">
               <button
                 class="items-end px-1 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-white hover:text-green-500 focus:outline-none focus:shadow-outline-white"
                ><i class="icon-copy fa fa-plus" style="padding-left: 0.3rem; padding-right:0.5rem" aria-hidden="true"></i>
                 Upload Bukti Pembayaran
               </button>
-            </a> --}}
+            </a>
           </div>
           <div class="text-gray-700">
             <div class="grid text-sm">
@@ -174,7 +174,7 @@
                   <div class="grid grid-cols-2"
                   style="grid-template-columns: 35% auto;">
                     <div class="px-4 py-2">Bukti Pembayaran</div>
-                    {{-- <div class="px-4 grid">
+                    <div class="px-4 grid">
                       <img
                         class="object-cover"
                         src="./assets/img/lahan-2.jpg"
@@ -182,7 +182,7 @@
                         width="200"
                         loading="lazy"
                       />
-                    </div> --}}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -203,7 +203,7 @@
                   <div class="grid grid-cols-2"
                   style="grid-template-columns: 35% auto;">
                     <div class="px-4 py-2">Bukti Pembayaran</div>
-                    {{-- <div class="px-4 grid">
+                    <div class="px-4 grid">
                       <img
                         class="object-cover"
                         src="./assets/img/lahan-2.jpg"
@@ -211,13 +211,13 @@
                         width="200"
                         loading="lazy"
                       />
-                    </div> --}}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
         <div class="bg-white p-3 shadow-sm rounded-sm">
           <div
             class="flex items-center justify-between p-2 py-1 mb-5 text-sm font-semibold text-white bg-green-500 rounded-md shadow-md">
@@ -250,16 +250,16 @@
                       <th class="px-2 py-2 text-medium text-sm">Tanggal Pemanenan</th>
                       <th class="px-2 py-2 text-medium text-sm">Hasil(kg)</th>
                       <th class="px-2 py-2 text-medium text-sm">Tanggal Penjualan</th>
-                      <th class="px-2 py-2 text-medium text-sm">Hasil Penjualan(rp)</th>
+                      <th class="px-2 py-2 text-medium text-sm">Hasil Penjualan(Rp)</th>
                       <th class="px-2 py-2 text-medium text-sm">Bukti Penjualan</th>
-                      <th class="px-2 py-2 text-medium text-sm">Bagi Hasil Mitra(rp)</th>
+                      <th class="px-2 py-2 text-medium text-sm">Bagi Hasil Mitra(Rp)</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
+                  @if($panen == 'null')
                     <tr class="text-gray-700 dark:text-gray-400">
-                      @if($panen == 'null')
                       <td class="px-2 py-2 text-sm">
                         -
                       </td>
@@ -281,8 +281,10 @@
                       <td class="px-2 py-2 text-sm">
                         -
                       </td>
-                      @else
-                      @foreach($panen as $panen)
+                    </tr>
+                  @else
+                    @foreach($panen as $panen)
+                    <tr>
                       <td class="px-2 py-2 text-sm">
                         {{$panen -> panen_ke}}
                       </td>
@@ -306,9 +308,9 @@
                       <td class="px-2 py-2 text-sm">
                       {{$panen -> bagi_hasil_mitra}}
                       </td>
-                      @endforeach
-                      @endif
                     </tr>
+                    @endforeach
+                    @endif
                   </tbody>
                 </table>
               </div>

@@ -48,6 +48,10 @@
                   name="phone_number"
                 />
               </label>
+              <div class="form-group py-3">
+                <label class="text-sm" for="exampleFormControlFile2">Update foto profil</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile2" name="foto_bukti_penjualan" required>
+              </div>
               <div class="flex item-center justify-end space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row">
                 <a href="/profile"
                     class="px-5 py-3 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"

@@ -10,7 +10,6 @@ use App\Models\Kecamatan;
 use App\Models\User;
 use App\Models\VerifikasiLahan;
 use App\Models\TambahHasilPanen;
-use App\Models\TemplateMou;
 use Illuminate\Http\Request;
 
 class LahanController extends Controller
@@ -85,23 +84,5 @@ class LahanController extends Controller
     public function getDesa($id) {
         $desa = Desa::where('id_kecamatan',$id)->get();
         return response()->json($desa);
-    }
-
-    public function upload_mou(Request $request){
-        if (Auth::user()) {
-            $docValidator = $request -> validate([
-                'mou' => 'required|mimes:docx,doc,pdf',
-            ]);
-
-            $docName = $request->mou->getClientOriginalName();
-            $request->mou->move("assets/mou/", $docName);
-
-            $mou = new TemplateMou;
-            $mou -> file_mou = "assets/mou/$docName";
-            
-            $mou -> save();
-
-            return redirect('/kerjasama')->with('message', 'Mou berhasil di upload!');;
-        }
     }
 }

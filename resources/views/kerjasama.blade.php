@@ -50,7 +50,7 @@
               ></div>
             </div>
             <div>
-              <p class="font-semibold text-white">{{$row -> nama}}</p>
+              <p class="font-semibold text-black">{{$row -> nama}}</p>
               <p class="font-medium text-xs text-gray-600 dark:text-gray-400">
                 {{$data1[$key] -> lokasi_lahan}}
               </p>

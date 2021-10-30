@@ -28,6 +28,10 @@
                   name="email"
                 />
               </label>
+              <div class="form-group py-3">
+                <label class="text-sm" for="exampleFormControlFile2">Update foto profil</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile2" name="foto_bukti_penjualan" required>
+              </div>
               {{--<label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">No Telepon</span>
                 <input

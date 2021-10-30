@@ -62,7 +62,9 @@ class AdminController extends Controller
                 'id_account_verify' => 1,
             ]);
         
-        return redirect('/verifikasi')->with('status', 'Data Berhasil Diubah!');
+        return redirect('/verifikasi')
+        // ->with('status', 'Data Berhasil Diubah!')
+        ;
     }
 
     public function terima(User $terima)
@@ -72,7 +74,9 @@ class AdminController extends Controller
                 'id_account_verify' => 2,
             ]);
         
-        return redirect('/verifikasi')->with('status', 'Data Berhasil Diubah!');
+        return redirect('/verifikasi')
+        // ->with('status', 'Data Berhasil Diubah!')
+        ;
     }
 
     public function kerjasama()
@@ -211,5 +215,23 @@ class AdminController extends Controller
         $data -> save();
 
         return redirect("/detail_kerjasama/$request->id_lahan");
+    }
+    public function upload_mou(Request $request)
+    {
+        if (Auth::user()) {
+            $docValidator = $request->validate([
+                'mou' => 'required|mimes:docx,doc,pdf',
+            ]);
+
+            $docName = $request->mou->getClientOriginalName();
+            $request->mou->move("assets/mou/", $docName);
+
+            $mou = new TemplateMou;
+            $mou->file_mou = "assets/mou/$docName";
+
+            $mou->save();
+
+            return redirect('/kerjasama')->with('message', 'Mou berhasil di upload!');;
+        }
     }
 }

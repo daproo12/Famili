@@ -44,7 +44,7 @@ Route::group(['middleware'=>['auth:admin']], function(){
         Route::get('/verifikasi', [AdminController::class, 'tampil_verifikasi']);
         Route::get('/detail_kerjasama_hasilpanen/{id}', [AdminController::class, 'detail_kerjasama_hasilpanen']);
         Route::get('/profile_mitra', [AdminController::class, 'open_profile']);
-        Route::post('/upload_mou', [LahanController::class, 'upload_mou']);
+        Route::post('/upload_mou', [AdminController::class, 'upload_mou']);
         Route::get('/editprofile_mitra', [AdminController::class, 'edit_profile']);
         Route::post('/detail_dashboard', [AdminController::class, 'ambil_data_lahan']);
         Route::get('/kerjasama',[AdminController::class, 'kerjasama']);

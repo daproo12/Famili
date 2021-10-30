@@ -53,7 +53,7 @@ class LahanController extends Controller
         return redirect('/tambah_pengajuan_petani');
     }
 
-    public function coba(){
+    public function riwayat(){
         $id = Auth::id();
         $bool = Lahan::where('id_petani', $id)->first();
         $data = $bool -> id_verify_status;

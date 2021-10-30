@@ -35,7 +35,7 @@ Route::group(['middleware'=>['auth:user']], function(){
         Route::get('/editprofile', [UserController::class,'edit']);
         Route::get('/tambah_pengajuan_petani', [LahanController::class, 'ambil_kerjasama']);
         Route::post('/ajukan', [LahanController::class, 'ajukan_kerjasama']);
-        Route::get('/detail_pengajuan_petani', [LahanController::class, 'coba']);
+        Route::get('/detail_pengajuan_petani', [LahanController::class, 'riwayat']);
         Route::get('/getDesa/{id}', [LahanController::class, 'getDesa']);
 });
 

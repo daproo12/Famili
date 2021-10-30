@@ -50,7 +50,7 @@
               </label>
               <div class="form-group py-3">
                 <label class="text-sm" for="exampleFormControlFile2">Update foto profil</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile2" name="foto_bukti_penjualan" required>
+                <input type="file" class="form-control-file" id="exampleFormControlFile2" name="foto_profile_petani" required>
               </div>
               <div class="flex item-center justify-end space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row">
                 <a href="/profile"

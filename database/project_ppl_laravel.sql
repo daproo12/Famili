@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Okt 2021 pada 09.12
+-- Waktu pembuatan: 21 Nov 2021 pada 21.46
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.1
 
@@ -70,11 +70,13 @@ CREATE TABLE `hasil_panen` (
   `panen_ke` int(4) NOT NULL,
   `tanggal_panen` date NOT NULL,
   `hasil_panen` int(5) NOT NULL,
-  `tanggal_penjualan` date NOT NULL,
-  `hasil_penjualan` bigint(10) NOT NULL,
-  `foto_bukti_penjualan` varchar(255) NOT NULL,
-  `bagi_hasil_petani` bigint(10) NOT NULL,
-  `bagi_hasil_mitra` bigint(10) NOT NULL,
+  `biaya_panen` int(11) NOT NULL,
+  `umur_petik` varchar(10) NOT NULL,
+  `panjang_buah` varchar(10) NOT NULL,
+  `diameter_buah` varchar(10) NOT NULL,
+  `warna` varchar(50) NOT NULL,
+  `rendemen` varchar(8) NOT NULL,
+  `kualitas_mutu` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -83,9 +85,35 @@ CREATE TABLE `hasil_panen` (
 -- Dumping data untuk tabel `hasil_panen`
 --
 
-INSERT INTO `hasil_panen` (`id_panen`, `id_lahan`, `panen_ke`, `tanggal_panen`, `hasil_panen`, `tanggal_penjualan`, `hasil_penjualan`, `foto_bukti_penjualan`, `bagi_hasil_petani`, `bagi_hasil_mitra`, `created_at`, `updated_at`) VALUES
-(2, 2, 1, '2021-10-01', 50, '2021-10-06', 30000000, 'assets/user/2/Wow.pdf', 18000000, 12000000, '2021-10-25 23:40:20', '2021-10-25 23:40:20'),
-(3, 1, 1, '2021-10-22', 100, '2021-10-22', 60000000, 'assets/user/1/bukuCOVER.jpg', 36000000, 24000000, '2021-10-25 23:59:31', '2021-10-25 23:59:31');
+INSERT INTO `hasil_panen` (`id_panen`, `id_lahan`, `panen_ke`, `tanggal_panen`, `hasil_panen`, `biaya_panen`, `umur_petik`, `panjang_buah`, `diameter_buah`, `warna`, `rendemen`, `kualitas_mutu`, `created_at`, `updated_at`) VALUES
+(8, 4, 1, '2021-12-02', 10, 10000000, '6-8', 'min 18', '>1', 'Kuning kecoklatan', '14-19', 'Grade I', '2021-11-21 13:18:16', '2021-11-21 13:18:16');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `hasil_pembayaran`
+--
+
+CREATE TABLE `hasil_pembayaran` (
+  `id_pembayaran` int(10) NOT NULL,
+  `id_panen` int(10) NOT NULL,
+  `tanggal_transaksi` date NOT NULL,
+  `pembeli` varchar(50) NOT NULL,
+  `berat` int(5) NOT NULL,
+  `harga_terjual` int(5) NOT NULL,
+  `bukti_pembayaran` varchar(255) NOT NULL,
+  `bagi_hasil_petani` bigint(10) NOT NULL,
+  `bagi_hasil_mitra` bigint(10) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `hasil_pembayaran`
+--
+
+INSERT INTO `hasil_pembayaran` (`id_pembayaran`, `id_panen`, `tanggal_transaksi`, `pembeli`, `berat`, `harga_terjual`, `bukti_pembayaran`, `bagi_hasil_petani`, `bagi_hasil_mitra`, `created_at`, `updated_at`) VALUES
+(6, 8, '2021-12-11', 'riris', 6, 5000000, 'assets/user/3/IMG_20190910_093816.jpg', 2000000, 3000000, '2021-11-21 13:20:15', '2021-11-21 13:20:15');
 
 -- --------------------------------------------------------
 
@@ -155,7 +183,8 @@ CREATE TABLE `lahan` (
 
 INSERT INTO `lahan` (`id_lahan`, `luas_lahan`, `lokasi_lahan`, `id_desa`, `id_petani`, `foto_bukti_lahan`, `tanggal_tanam`, `jumlah_bibit`, `dokumen_mou`, `id_verify_status`, `created_at`, `updated_at`) VALUES
 (1, 100, 'asdadasd,9,asdad', 9, 1, 'assets/user/1/34696.jpg', '2000-10-10', 50, 'assets/user/1/Altaf.pdf', 2, '2021-10-19 05:57:10', '2021-10-24 10:15:51'),
-(2, 100, 'maksmdads', 8, 2, 'assets/user/2/IMG_20190910_093823.jpg', '2021-10-24', 1, 'assets/user/2/Program 1.pdf', 2, '2021-10-24 09:53:32', '2021-10-25 09:04:59');
+(2, 100, 'maksmdads', 8, 2, 'assets/user/2/IMG_20190910_093823.jpg', '2021-10-24', 1, 'assets/user/2/Program 1.pdf', 2, '2021-10-24 09:53:32', '2021-10-25 09:04:59'),
+(4, 150, 'Perum Villa Genteng', 8, 3, 'assets/user/3/5e22a0522d26e.jpg', '2021-11-29', 417, 'assets/user/3/Wow.pdf', 2, '2021-11-21 13:09:49', '2021-11-21 13:11:48');
 
 -- --------------------------------------------------------
 
@@ -201,7 +230,7 @@ CREATE TABLE `mitra` (
 --
 
 INSERT INTO `mitra` (`id_mitra`, `email`, `password`, `nama`, `profile_photo`, `created_at`, `updated_at`) VALUES
-(2, 'coba@coba.com', '$2y$10$L3JklHNESQsQXbOYi.4VTORKhwfpAtj76f.TekVch7ziEWPWORXBG', 'Dimas', 'images/kosong.png', '2021-10-18 20:41:03', '2021-10-24 10:21:51');
+(2, 'dika@ganteng.com', '$2y$10$L3JklHNESQsQXbOYi.4VTORKhwfpAtj76f.TekVch7ziEWPWORXBG', 'Dimas', 'images/kosong.png', '2021-10-18 20:41:03', '2021-10-28 10:38:22');
 
 -- --------------------------------------------------------
 
@@ -334,7 +363,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `nama`, `email`, `nik`, `alamat`, `phone_number`, `profile_photo`, `id_account_verify`, `account_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Mahardika', 'mahardika.oktavian@gmail.com', '35102231239', 'Banyuwangi indah no.1,Sobo,Banyuwangi', '081911633004', 'images/kosong.png', 2, NULL, '$2y$10$GsKQjx26gcCfBN2uHsWB/.xiWYsWmYNdZ9b62iu1d8Yx/wkAjZouK', NULL, '2021-10-18 07:03:16', '2021-10-19 08:38:03'),
 (2, 'masmdakdsm', 'bagus@gmail.com', 'asmkdasm', 'amskdamkd,asdmkasdmk,maskdmakd', '08191821298', 'images/kosong.png', 2, NULL, '$2y$10$f43tHkMXG9.tUE5PkguYguGntVArSNvgQRJojQ1jcO5xu2ykz.SUy', NULL, '2021-10-19 02:30:27', '2021-10-22 11:31:38'),
-(3, 'Dimas', 'dimas@gmail.com', '35241231212', 'Perumahan Dimas,Pesanggaran,Pesanggaran', '08192328192', 'images/kosong.png', 1, NULL, '$2y$10$0Jv4TjOBRmGi.AH5ZVf14Od49NcV8PjfHDaa2YvJi28.hnpFvIBCm', NULL, '2021-10-25 08:37:19', '2021-10-25 09:09:22');
+(3, 'Dimas', 'dimas@gmail.com', '35241231212', 'Perumahan Dimas,Pesanggaran,Pesanggaran', '08192328192', 'images/kosong.png', 2, NULL, '$2y$10$0Jv4TjOBRmGi.AH5ZVf14Od49NcV8PjfHDaa2YvJi28.hnpFvIBCm', NULL, '2021-10-25 08:37:19', '2021-10-25 09:09:22');
 
 --
 -- Indexes for dumped tables
@@ -360,6 +389,13 @@ ALTER TABLE `failed_jobs`
 ALTER TABLE `hasil_panen`
   ADD PRIMARY KEY (`id_panen`),
   ADD KEY `id_lahan` (`id_lahan`);
+
+--
+-- Indeks untuk tabel `hasil_pembayaran`
+--
+ALTER TABLE `hasil_pembayaran`
+  ADD PRIMARY KEY (`id_pembayaran`),
+  ADD KEY `id_panen` (`id_panen`);
 
 --
 -- Indeks untuk tabel `kecamatan`
@@ -455,7 +491,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `hasil_panen`
 --
 ALTER TABLE `hasil_panen`
-  MODIFY `id_panen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_panen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `hasil_pembayaran`
+--
+ALTER TABLE `hasil_pembayaran`
+  MODIFY `id_pembayaran` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `kecamatan`
@@ -467,7 +509,7 @@ ALTER TABLE `kecamatan`
 -- AUTO_INCREMENT untuk tabel `lahan`
 --
 ALTER TABLE `lahan`
-  MODIFY `id_lahan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_lahan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -520,6 +562,12 @@ ALTER TABLE `desa`
 --
 ALTER TABLE `hasil_panen`
   ADD CONSTRAINT `pembagian_uang_lahan` FOREIGN KEY (`id_lahan`) REFERENCES `lahan` (`id_lahan`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `hasil_pembayaran`
+--
+ALTER TABLE `hasil_pembayaran`
+  ADD CONSTRAINT `panen` FOREIGN KEY (`id_panen`) REFERENCES `hasil_panen` (`id_panen`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `lahan`

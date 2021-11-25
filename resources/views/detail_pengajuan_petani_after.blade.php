@@ -16,7 +16,7 @@
           <ul
             class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
             <li class="flex items-center py-3">
-              <span class="px-2">Status</span>
+              <span>Status</span>
               <span class="ml-auto">
                 {{-- <span
                   class="font-medium bg-gray-50 shadow py-1 px-2 rounded text-black text-sm">
@@ -49,7 +49,7 @@
       <div class="w-full md:w-9/12 mx-2 h-64">
         <div class="bg-white p-3 shadow-sm rounded-sm">
           <a
-            class="flex items-center justify-between p-2 mb-2 text-sm font-semibold text-white bg-green-500 rounded-md shadow-md"
+            class="flex items-center justify-between p-3 mb-5 text-sm font-semibold text-white bg-green-500 rounded-md shadow-md"
           >
             <div class="flex items-center">
                   <span clas="text-green-500">
@@ -106,7 +106,99 @@
         </div>
         <div class="bg-white p-3 shadow-sm rounded-sm">
           <div
-            class="flex items-center justify-between p-2 mb-2 text-sm font-semibold text-white bg-green-500 rounded-md shadow-md">
+            class="flex items-center justify-between p-2 py-1 mb-5 text-sm font-semibold text-white bg-green-500 rounded-md shadow-md">
+            <div class="flex items-center">
+              <span clas="text-green-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                  <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+              </span>
+              <span class="px-3 tracking-wide">Pembayaran</span>
+            </div>
+            <div>
+            <a href="/pembayaran_petani">
+              <button
+              class="items-end px-1 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-md active:bg-green-500 hover:bg-white hover:text-green-500 focus:outline-none focus:shadow-outline-white"
+              >
+              <i class="icon-copy fa fa-plus" style="padding-left: 0.3rem; padding-right:0.5rem" aria-hidden="true"></i>
+                Upload Bukti Pembayaran
+              </button>
+            </a>
+            {{--@include('partial.modal_bukti_pembayaran')--}}
+            </div>
+          </div>
+          <div class="text-gray-700">
+            <div class="grid text-sm">
+              <div class="grid grid-cols-2"
+              style="grid-template-columns: 35% auto;">
+                <div class="px-4 py-2 font-semibold">Total Pembayaran</div>
+                <div class="px-4 py-2">Rp 50.000.000</div>
+              </div>
+              <div class="grid grid-cols-2"
+              style="grid-template-columns: 35% auto;">
+                <div class="px-4 py-2 font-semibold">Uang Muka</div>
+                <div class="grid">
+                  <div class="grid grid-cols-2"
+                  style="grid-template-columns: 35% auto;">
+                    <div class="px-4 py-2">Jumlah Pembayaran</div>
+                    <div class="px-4 py-2">Rp 25.000.000</div>
+                  </div>
+                  <div class="grid grid-cols-2"
+                  style="grid-template-columns: 35% auto;">
+                    <div class="px-4 py-2">Status Pembayaran</div>
+                    <div class="px-4 py-2">Belum Lunas</div>
+                  </div>
+                  <div class="grid grid-cols-2"
+                  style="grid-template-columns: 35% auto;">
+                    <div class="px-4 py-2">Bukti Pembayaran</div>
+                    {{-- <div class="px-4 grid">
+                      <img
+                        class="object-cover"
+                        src="./assets/img/lahan-2.jpg"
+                        alt=""
+                        width="200"
+                        loading="lazy"
+                      />
+                    </div> --}}
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2"
+              style="grid-template-columns: 35% auto;">
+                <div class="px-4 py-2 font-semibold">Pelunasan</div>
+                <div class="grid">
+                  <div class="grid grid-cols-2"
+                  style="grid-template-columns: 35% auto;">
+                    <div class="px-4 py-2">Jumlah Pembayaran</div>
+                    <div class="px-4 py-2">Rp 25.000.000</div>
+                  </div>
+                  <div class="grid grid-cols-2"
+                  style="grid-template-columns: 35% auto;">
+                    <div class="px-4 py-2">Status Pembayaran</div>
+                    <div class="px-4 py-2">Belum Lunas</div>
+                  </div>
+                  <div class="grid grid-cols-2"
+                  style="grid-template-columns: 35% auto;">
+                    <div class="px-4 py-2">Bukti Pembayaran</div>
+                    <div class="px-4 grid">
+                      {{-- <img
+                        class="object-cover"
+                        src="./assets/img/lahan-2.jpg"
+                        alt=""
+                        width="200"
+                        loading="lazy"
+                      />
+                    </div> --}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded-sm">
+          <div
+            class="flex items-center justify-between p-2 py-1 mb-5 text-sm font-semibold text-white bg-green-500 rounded-md shadow-md">
             <div class="flex items-center">
               <span clas="text-green-500">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -120,76 +212,44 @@
           <div class="text-gray-700">
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap">
+              <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr
                       class="tracking-wide text-left text-gray-700 border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-2 py-2 text-medium text-sm">Panenan</th>
+                      <th class="px-2 py-2 text-medium text-sm">Panen Ke</th>
                       <th class="px-2 py-2 text-medium text-sm">Tanggal Pemanenan</th>
                       <th class="px-2 py-2 text-medium text-sm">Hasil(kg)</th>
-                      <th class="px-2 py-2 text-medium text-sm">Tanggal Penjualan</th>
-                      <th class="px-2 py-2 text-medium text-sm">Hasil Penjualan(Rp)</th>
-                      <th class="px-2 py-2 text-medium text-sm">Bukti Penjualan</th>
-                      <th class="px-2 py-2 text-medium text-sm">Bagi Hasil Petani(Rp)</th>
+                      <th class="px-2 py-2 text-medium text-sm">Kualitas Mutu</th>
+                      <th class="px-2 py-2 text-medium text-sm"></th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                  @if($panen == 'null')
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-2 py-2 text-sm">
-                        -
-                      </td>
-                      <td class="px-2 py-2 text-sm">
-                        -
-                      </td>
-                      <td class="px-2 py-2 text-sm">
-                        -
-                      </td>
-                      <td class="px-2 py-2 text-sm">
-                        -
-                      </td>
-                      <td class="px-2 py-2 text-sm">
-                        -
-                      </td>
-                      <td class="px-2 py-2 text-sm">
-                        -
-                      </td>
-                      <td class="px-2 py-2 text-sm">
-                        -
-                      </td>
-                    </tr>
-                  @else
                     @foreach($panen as $panen)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-2 py-2 text-sm">
                         {{$panen -> panen_ke}}
                       </td>
                       <td class="px-2 py-2 text-sm">
-                      {{$panen -> tanggal_panen}}
+                        {{$panen -> tanggal_panen}}
                       </td>
                       <td class="px-2 py-2 text-sm">
-                      {{$panen -> hasil_panen}}
+                        {{$panen -> hasil_panen}}
                       </td>
                       <td class="px-2 py-2 text-sm">
-                      {{$panen -> tanggal_penjualan}}
+                        {{$panen -> kualitas_mutu}}
                       </td>
                       <td class="px-2 py-2 text-sm">
-                      {{$panen -> hasil_penjualan}}
-                      </td>
-                      <td class="px-2 py-2 text-sm">
-                      <a href="/{{$panen -> foto_bukti_penjualan}}" target="_blank" class="px-1 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-lg active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
-                        Download
-                      </a>
-                      </td>
-                      <td class="px-2 py-2 text-sm">
-                      {{$panen -> bagi_hasil_petani}}
+                        <div class="flex justify-end" style="margin-left: -80px; margin-right:20px;">
+                          <a href="/lihat_hasil_panen_petani/{{$panen -> id_panen}}" class="px-3 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-500 border border-transparent rounded-lg active:bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
+                            Lihat
+                          </a>
+                        </div>
                       </td>
                     </tr>
                     @endforeach
-                  @endif
                   </tbody>
                 </table>
               </div>

@@ -1,15 +1,13 @@
 <header>
-    <div class="header"
-    style="background: linear-gradient(to right, #1C7947, #48794c);"  >
+    <div class="header">
       <div class="container">
-        <div class="items-center row"
-        style="margin-right: -175px;">
-          <div class="logo_section">
+        <div class="item-center row">
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section">
             <div class="full">
               <div class="center-desk">
                 <div class="logo">
                   <a href="/">
-                    <h1 class="ml-4 text-white text-3xl font-bold">F A M I L I</h1>
+                    <h1 class="ml-4 mt-2 text-white text-3xl font-bold">F A M I L I</h1>
                     {{-- <img src="./assets/img/logo-1.png" alt="Logo" width="50"> --}}
                   </a>
                 </div>
@@ -27,7 +25,7 @@
                     <a href="/profile">
                       <img
                         class="object-cover w-12 h-12 rounded-full shadow-lg"
-                        src="{{Auth::user()->profile_photo}}"
+                        src="/{{Auth::user()->profile_photo}}"
                         alt=""
                         loading="lazy"
                       />

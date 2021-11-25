@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Verifikasi;
+use App\Models\TambahHasilPanen;
+use App\Models\PembayaranPanen;
 
 class UserController extends Controller
 {
@@ -29,6 +31,54 @@ class UserController extends Controller
     public function create()
     {
         return view('daftar',['title' => 'Daftar']);
+    }
+
+    public function simulasi(Request $request)
+    {
+        $luas = $request -> luaslahan;
+        $jumlahbibit = round(4*(100*($luas/144)));
+        $modal = number_format(29518000*($luas/144), 2, ",", ".");
+        $pred1 = 0.5*$jumlahbibit;
+        $pred2 = 1.5*$jumlahbibit;
+        $pred3 = 2*$jumlahbibit;
+        $bghslpetani1 = number_format(0.4*($pred1 * 500000), 2, ",", ".");
+        $bghslpetani2 = number_format(0.4*($pred2 * 500000), 2, ",", ".");
+        $bghslpetani3 = number_format(0.4*($pred3 * 500000), 2, ",", ".");
+        $bghslmitra1 = number_format(0.6*($pred1 * 500000), 2, ",", ".");
+        $bghslmitra2 = number_format(0.6*($pred2 * 500000), 2, ",", ".");
+        $bghslmitra3 = number_format(0.6*($pred3 * 500000), 2, ",", ".");
+        return view('simulasi',['title' => 'Simulasi Penjualan',
+        'luas' => $luas, 
+        'bibit' => $jumlahbibit, 
+        'modal' => $modal,
+        'pred1' => $pred1,
+        'pred2' => $pred2,
+        'pred3' => $pred3,
+        'bghslpetani1' => $bghslpetani1,
+        'bghslpetani2' => $bghslpetani2,
+        'bghslpetani3' => $bghslpetani3,
+        'bghslmitra1' => $bghslmitra1,
+        'bghslmitra2' => $bghslmitra2,
+        'bghslmitra3' => $bghslmitra3]);
+    }
+
+    public function updatefoto(Request $request){
+        $id = Auth::id();
+        $request -> validate([
+            'gambar' => ['image']
+        ]);
+
+        $pemilik = $id;
+        $imageName = $request->gambar->getClientOriginalName();
+        $request->gambar->move("images/admin/$pemilik/", $imageName);
+
+
+        User::where('id', $id)
+            ->update([
+            'profile_photo' => "images/admin/$pemilik/$imageName"
+        ]);
+
+        return redirect('/profile')->withErrors(['success' => 'Foto Profil berhasil diubah!']);
     }
 
     public function upload(Request $request, User $user){
@@ -70,7 +120,7 @@ class UserController extends Controller
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', 'min:6'],
-            'nik' => ['required', 'string', 'max:17'],
+            'nik' => ['required', 'string', 'min:15'],
             'alamat' => ['required', 'string', 'max:255'],
             'desa' => ['required', 'string', 'max:255'],
             'kecamatan' => ['required', 'string', 'max:255'],
@@ -91,6 +141,22 @@ class UserController extends Controller
 
         $user -> save();
 
-        return redirect('/login');
+        return redirect('/login')->withErrors(['success' => 'Pendaftaran akun berhasil!']);
+    }
+
+    public function lihat_hasil_panen($id)
+    {
+        $data = TambahHasilPanen::where('id_panen', $id)->first();
+        $penjualan = false;
+        $penjualan = PembayaranPanen::where('id_panen', $id)->get();
+        $bghslpetani = 0;
+        $bghslmitra = 0;
+        foreach ($penjualan as $pjl) {
+            $bghslpetani += $pjl -> bagi_hasil_petani; 
+            $bghslmitra += $pjl -> bagi_hasil_mitra; 
+        }
+        $bghslmitra = number_format($bghslmitra, 2, ",", ".");
+        $bghslpetani = number_format($bghslpetani, 2, ",", ".");
+        return view('lihat_hasil_panen_petani', ['title' => 'Hasil Panen', 'data' => $data, 'penjualan' => $penjualan, 'bgptn' => $bghslpetani, 'bgmtr' => $bghslmitra]);
     }
 }

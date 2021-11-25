@@ -16,9 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $user = new AdminModel;
-        $user -> email = 'admin2@gmail.com';
-        $user -> profile_photo = 'images/kosong.png';
-        $user -> password = Hash::make('qwerty');
+        $user -> email = 'coba@coba.com';
+        $user -> password = Hash::make('mahardika');
         $user -> nama = 'Admin';
         $user -> save();
     }
